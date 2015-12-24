@@ -28,6 +28,7 @@ package com.beautifycode.lamer {
 		public var mediatormap : IMediatorMap;
 
 		public function configure() : void {
+			// @TODO: ConversionModel doesn't have to be a Singleton later
 			injectormap.map(FileService).asSingleton();
 			injectormap.map(PreferencesModel).asSingleton();
 			injectormap.map(ConversionModel).asSingleton();

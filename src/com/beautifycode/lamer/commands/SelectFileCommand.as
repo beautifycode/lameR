@@ -11,6 +11,8 @@ package com.beautifycode.lamer.commands {
 		public var fileService:FileService;
 		
 		override public function execute() : void {
+			// @TODO: merge with native drag&drop paths
+			
 			fileService.selectFile();
 		}
 	}

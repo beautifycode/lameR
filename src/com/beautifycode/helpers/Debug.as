@@ -6,7 +6,7 @@ package com.beautifycode.helpers {
 	import flash.utils.getTimer;
 
 	/**
-	 * @author Tobias Oberrauch
+	 * @author beautifycode
 	 */
 	public class Debug {
 		public static function Dtrace(param : *) : void {

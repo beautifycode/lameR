@@ -12,6 +12,7 @@ package com.beautifycode.lamer.views {
 		public var view : MainView;
 
 		override public function initialize() : void {
+			// @TODO: Add drag&drop on view
 			addViewListener(UserEvent.SELECT_FILE, dispatch, UserEvent);
 
 			addContextListener(ConversionEvent.START, _onProgressStart);

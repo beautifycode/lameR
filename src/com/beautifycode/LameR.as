@@ -21,11 +21,11 @@ package com.beautifycode {
 
 		public function LameR() {
 			_contextView = new ContextView(this);
-			
 			_context = new Context()
 				.install(MVCSBundle)
 				.configure(LameRConfig, _contextView);
-
+				
+			// @TODO: Configure AIR application
 			addEventListener(Event.ADDED_TO_STAGE, _onAddedToStage);
 		}
 

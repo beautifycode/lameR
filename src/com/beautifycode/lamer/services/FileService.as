@@ -31,12 +31,12 @@ package com.beautifycode.lamer.services {
 		private var _cleanPercentInt : int;
 		private var _convertEvent : ConversionEvent;
 
+		// @TODO: Release from Service, add drag&drop via Command
 		public function selectFile() : void {
 			_selectedUserFile = new File();
 			_selectedUserFile.addEventListener(Event.SELECT, _onFileSelect);
 			_selectedUserFile.browse();
 
-			// @TODO: wav only
 			Debug.log("User is selecting file...");
 		}
 
@@ -61,6 +61,7 @@ package com.beautifycode.lamer.services {
 			_processArgs = new Vector.<String>();
 			_processArgs.push("--preset", "192", _selectedUserFilePath);
 
+			// @TODO: Release from FileService, add to ConversionService
 			_nativeProcessStartupInfo.arguments = _processArgs;
 			_nativeProcess.start(_nativeProcessStartupInfo);
 

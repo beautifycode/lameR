@@ -10,6 +10,7 @@ package com.beautifycode.lamer.views {
 	 */
 	public class MainView extends Sprite {
 		public function MainView() {
+			// @TODO: Everything, I guess
 			var btn : PushButton = new PushButton();
 			btn.addEventListener(MouseEvent.CLICK, _onFileSelectClick);
 			btn.x = 100;

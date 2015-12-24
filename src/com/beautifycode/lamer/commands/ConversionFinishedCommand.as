@@ -12,6 +12,10 @@ package com.beautifycode.lamer.commands {
 		public var fileService : FileService;
 
 		override public function execute() : void {
+			// @TODO: Compare Hashs
+			// @TODO: Test output file
+			// @TODO: Add preview UI 
+			 
 			Debug.log("Conversion finished.");
 		}
 	}
