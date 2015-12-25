@@ -23,7 +23,7 @@
 	Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
 	An updated version of application must have a versionNumber value higher than the previous version. Required for namespace >= 2.5 .
     For iOS Apps, this represents build number. -->
-  <versionNumber>0.1.5</versionNumber>
+  <versionNumber>0.1.6</versionNumber>
   <!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. 
      For iOS Apps, this represents application version number and format should be (<0-999>.<0-999>.<0-999>).
      If this tag is not specified or the value is not according to the format, then this tag will be ignored 
@@ -134,25 +134,6 @@
 		<image732x412></image732x412>
 		<image1024x1024></image1024x1024>
 	</icon> -->
-  <!-- Whether the application handles the update when a user double-clicks an update version
-	of the AIR file (true), or the default AIR application installer handles the update (false).
-	Optional. Default false. -->
-  <!-- <customUpdateUI></customUpdateUI> -->
-  <!-- Whether the application can be launched when the user clicks a link in a web browser.
-	Optional. Default false. -->
-  <!-- <allowBrowserInvocation></allowBrowserInvocation> -->
-  <!-- Listing of file types for which the application can register. Optional. -->
-  <fileTypes>wav mp3</fileTypes>
-  <!-- Defines one file type. Optional. -->
-  <!-- <fileType> -->
-  <!-- The name that the system displays for the registered file type. Required. -->
-  <!-- <name></name> -->
-  <!-- The extension to register. Required. -->
-  <!-- <extension></extension> -->
-  <!-- The description of the file type. Optional. -->
-  <!-- <description></description> -->
-  <!-- The MIME content type. -->
-  <!-- <contentType></contentType> -->
   <!-- The icon to display for the file type. Optional. -->
   <!-- <icon>
 				<image16x16></image16x16>
