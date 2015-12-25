@@ -19,10 +19,12 @@ Marvin Blase
 - OSX native installer w/ lame 3.99.5 
 - Simple UI setup
 
-# Features (tba)
+# Features (tbc)
 - FLAC support
 - mp3 tagging
 - Normalize DB w/ compression
+- Organizational features 
+- Add artwork
 - 3-Band-EQ w/ Notch, Bell, Low- and Highcut
 - Automatic Upload via Dropbox, Soundcloud
 - Add video-output support with still image
