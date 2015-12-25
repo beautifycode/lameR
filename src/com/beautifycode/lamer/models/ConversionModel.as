@@ -8,6 +8,8 @@ package com.beautifycode.lamer.models {
 	 * @author marvin
 	 */
 	public class ConversionModel {
+		public static const ERROR_CODE : int = -1;
+
 		[Inject]
 		public var eventDispatcher : IEventDispatcher;
 		private var _userFilePath : String;
@@ -27,34 +29,41 @@ package com.beautifycode.lamer.models {
 			eventDispatcher.dispatchEvent(_conversionEvent);
 		}
 
-		public function get state() : String {
-			return _state;
-		}
-
 		public function set state(s : String) : void {
 			if (s && _state != s) {
 				Debug.log("ConversionModel.state: " + s);
 				_conversionEvent = new ConversionEvent(s, true, false);
+				eventDispatcher.dispatchEvent(_conversionEvent);
 				_state = s;
 			}
 		}
 
-		public function get progress() : int {
-			return _progress;
+		public function get state() : String {
+			return _state;
 		}
 
 		public function set progress(p : int) : void {
 			Debug.log("ConversionModel.progress: " + p);
 
-			if (_progress != p) {
+			if (p && _progress != p && p >= 0) {
 				_progress = p;
-				_conversionEvent.payload = {"conversionProgress":p};
+				eventDispatcher.dispatchEvent(_conversionEvent);
+			}
+
+			// @TODO: Check if real error or just missing meta
+			if (_progress == ConversionModel.ERROR_CODE) {
+				// state = ConversionEvent.ERROR;
+				Debug.log("No progress parsed");
+				return;
 			}
 
 			if (_progress == 100) {
 				state = ConversionEvent.FINISHED;
-				eventDispatcher.dispatchEvent(_conversionEvent);
 			}
+		}
+
+		public function get progress() : int {
+			return _progress;
 		}
 	}
 }

@@ -10,5 +10,6 @@ package com.beautifycode.lamer.models {
 		private var _compressorActive:Boolean;
 		private var _autoUpload:Boolean;
 		private var _uploadAPIPath:String;
+		private var _sameDirConversion:Boolean;
 	}
 }

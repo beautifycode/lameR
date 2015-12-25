@@ -20,8 +20,8 @@ package com.beautifycode.lamer.services {
 		[Inject]
 		public var conversionModel : ConversionModel;
 		private static var cleanPercentPattern : RegExp = /[(].*[)]/;
-		private var _selectedUserFile : File;
 		private var _selectedUserFilePath : String;
+		private var _selectedOutputFilePath : String = "";
 		private var _lameFile : File;
 		private var _nativeProcess : NativeProcess;
 		private var _processArgs : Vector.<String>;
@@ -29,7 +29,7 @@ package com.beautifycode.lamer.services {
 		private var _metaString : String;
 		private var _byteIndex : uint;
 
-		public function startConversion(fp:String) : void {
+		public function startConversion(fp : String) : void {
 			_selectedUserFilePath = fp;
 			_nativeProcess = new NativeProcess();
 			_setupNativeProgressEvents(_nativeProcess);
@@ -39,9 +39,9 @@ package com.beautifycode.lamer.services {
 			_nativeProcessStartupInfo = new NativeProcessStartupInfo();
 			_nativeProcessStartupInfo.executable = _lameFile;
 
-			// @TODO: ui settings
+			// @TODO: Fill via ui settings
 			_processArgs = new Vector.<String>();
-			_processArgs.push("--preset", "192", _selectedUserFilePath);
+			_processArgs.push("--preset", "192", _selectedUserFilePath, _selectedOutputFilePath);
 
 			// @TODO: Release from FileService, add to ConversionService
 			_nativeProcessStartupInfo.arguments = _processArgs;
@@ -77,6 +77,8 @@ package com.beautifycode.lamer.services {
 
 		private function _generateCleanPercentages(ms : String) : int {
 			var po : Object = cleanPercentPattern.exec(ms);
+			if(!po) return ConversionModel.ERROR_CODE;
+			
 			var cpi : int;
 			var cps : String;
 			var ps : String = po[0];

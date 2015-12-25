@@ -4,6 +4,7 @@ package com.beautifycode.lamer.views {
 	import com.beautifycode.helpers.Debug;
 	import com.beautifycode.lamer.controller.events.ConversionEvent;
 	import com.beautifycode.lamer.controller.events.UserEvent;
+	import com.beautifycode.lamer.models.ConversionModel;
 
 	import flash.desktop.ClipboardFormats;
 	import flash.desktop.NativeDragManager;
@@ -15,21 +16,18 @@ package com.beautifycode.lamer.views {
 	/**
 	 * @author marvin
 	 */
-	public class MainMediator extends Mediator {
+	public class UserSelectionMediator extends Mediator {
 		[Inject]
-		public var view : MainView;
+		public var view : UserSelectionView;
+
+		[Inject]
+		public var conversionModel : ConversionModel;
 		private var _userEvent : UserEvent;
 		private var _selectedUserFile : File;
 
 		override public function initialize() : void {
 			// @TODO: Add drag&drop on view
-			view.build();
-
 			addViewListener(UserEvent.SELECT_FILE, dispatch, UserEvent);
-
-			addContextListener(ConversionEvent.START, _onProgressStart);
-			addContextListener(ConversionEvent.PROGRESS, _onProgress);
-			addContextListener(ConversionEvent.FINISHED, _onProgressFinished);
 
 			view.selectFileBtn.addEventListener(MouseEvent.CLICK, _onFileSelectClick);
 			view.dragArea.stage.addEventListener(NativeDragEvent.NATIVE_DRAG_ENTER, _onDragEnter);
@@ -44,6 +42,7 @@ package com.beautifycode.lamer.views {
 		}
 
 		private function _onDropComplete(event : NativeDragEvent) : void {
+			Debug.log("UserSelectionMediator - _onDropComplete");
 			var f : Array = event.clipboard.getData(ClipboardFormats.FILE_LIST_FORMAT) as Array;
 			_userEvent = new UserEvent(UserEvent.SELECT_FILE, true, false);
 			_userEvent.payload = {filepath:f[0].nativePath};
@@ -64,20 +63,6 @@ package com.beautifycode.lamer.views {
 			_userEvent = new UserEvent(UserEvent.SELECT_FILE, true, false);
 			_userEvent.payload = {filepath:_selectedUserFile.nativePath};
 			eventDispatcher.dispatchEvent(_userEvent);
-		}
-
-		private function _onProgressStart(event : ConversionEvent) : void {
-			Debug.log("MainMediator - _onProgressStart");
-			// @TODO: Switch to ProgressView
-		}
-
-		private function _onProgress(event : ConversionEvent) : void {
-			// @TODO: Show progress
-		}
-
-		private function _onProgressFinished(event : ConversionEvent) : void {
-			Debug.log("MainMediator - _onProgressFinished");
-			// @TODO: Switch to ResultView
 		}
 	}
 }

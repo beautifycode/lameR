@@ -5,7 +5,7 @@ package com.beautifycode {
 	import robotlegs.bender.framework.impl.Context;
 
 	import com.beautifycode.lamer.LameRConfig;
-	import com.beautifycode.lamer.views.MainView;
+	import com.beautifycode.lamer.views.ApplicationView;
 	import com.demonsters.debugger.MonsterDebugger;
 
 	import flash.display.Sprite;
@@ -17,7 +17,7 @@ package com.beautifycode {
 	public class LameR extends Sprite {
 		private var _contextView : ContextView;
 		private var _context : IContext;
-		private var _mainView : MainView;
+		private var _mainView : ApplicationView;
 
 		public function LameR() {
 			_contextView = new ContextView(this);
@@ -35,7 +35,7 @@ package com.beautifycode {
 		}
 
 		private function _createChildren() : void {
-			_mainView = new MainView();
+			_mainView = new ApplicationView();
 			addChild(_mainView);
 		}
 	}

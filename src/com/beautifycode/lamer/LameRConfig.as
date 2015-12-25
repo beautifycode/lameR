@@ -12,8 +12,10 @@ package com.beautifycode.lamer {
 	import com.beautifycode.lamer.models.ConversionModel;
 	import com.beautifycode.lamer.models.PreferencesModel;
 	import com.beautifycode.lamer.services.ConversionService;
-	import com.beautifycode.lamer.views.MainMediator;
-	import com.beautifycode.lamer.views.MainView;
+	import com.beautifycode.lamer.views.ApplicationView;
+	import com.beautifycode.lamer.views.ApplicationViewMediator;
+	import com.beautifycode.lamer.views.UserSelectionMediator;
+	import com.beautifycode.lamer.views.UserSelectionView;
 
 	/**
 	 * @author marvin
@@ -41,7 +43,8 @@ package com.beautifycode.lamer {
 			commandmap.map(ConversionEvent.FILEPATH_SET).toCommand(StartConversionCommand);		
 			commandmap.map(ConversionEvent.FINISHED).toCommand(ConversionFinishedCommand);
 
-			mediatormap.map(MainView).toMediator(MainMediator);
+			mediatormap.map(ApplicationView).toMediator(ApplicationViewMediator);
+			mediatormap.map(UserSelectionView).toMediator(UserSelectionMediator);
 		}
 	}
 }

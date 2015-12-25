@@ -9,6 +9,7 @@ package com.beautifycode.lamer.controller.events {
 		public static const PROGRESS : String = "progress";
 		public static const FINISHED : String = "finished";
 		public static const STREAM_CLOSED : String = "streamClosed";
+		public static const ERROR : String = "error";
 		public var payload : Object;
 
 		public function ConversionEvent(type : String, bubbles : Boolean = false, cancelable : Boolean = false) {

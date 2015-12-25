@@ -8,5 +8,10 @@ package com.beautifycode.lamer.models {
 		public static const APP_WIDTH : int;
 		public static const APP_HEIGHT : int;
 		public static const LICENSE : uint;
+		private var _debugMode : String = "native";
+
+		public function get debugMode() : String {
+			return _debugMode;
+		}
 	}
 }
