@@ -1,4 +1,7 @@
 package com.beautifycode {
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
+	import flash.display.NativeWindow;
 	import robotlegs.bender.bundles.mvcs.MVCSBundle;
 	import robotlegs.bender.extensions.contextView.ContextView;
 	import robotlegs.bender.framework.api.IContext;
@@ -20,6 +23,9 @@ package com.beautifycode {
 		private var _mainView : ApplicationView;
 
 		public function LameR() {
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.align = StageAlign.TOP_LEFT;
+			
 			_contextView = new ContextView(this);
 			_context = new Context()
 				.install(MVCSBundle)
@@ -34,7 +40,7 @@ package com.beautifycode {
 			_createChildren();
 		}
 
-		private function _createChildren() : void {
+		private function _createChildren() : void {			
 			_mainView = new ApplicationView();
 			addChild(_mainView);
 		}

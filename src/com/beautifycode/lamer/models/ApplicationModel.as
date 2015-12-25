@@ -12,6 +12,7 @@ package com.beautifycode.lamer.models {
 		private var _debugMode : String = "native";
 		private var _fileFilter : FileFilter = new FileFilter("Audiofile", "*.wav;*.mp3");
 		private var _validFileTypes : Object = {wav:true, mp3:true};
+		private var _stageSizeObject : Object = {x:0, y:0, w:640, h:400};
 		
 
 
@@ -25,6 +26,10 @@ package com.beautifycode.lamer.models {
 
 		public function get validFileTypes() : Object {
 			return _validFileTypes;
+		}
+
+		public function get stageSizeObject() : Object {
+			return _stageSizeObject;
 		}
 	}
 }

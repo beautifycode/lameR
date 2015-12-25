@@ -1,4 +1,8 @@
 package com.beautifycode.lamer.views {
+	import robotlegs.bender.extensions.contextView.ContextView;
+
+	import com.beautifycode.helpers.Debug;
+
 	import flash.display.Sprite;
 
 	/**
@@ -15,9 +19,9 @@ package com.beautifycode.lamer.views {
 		public function ApplicationView() {
 		}
 
-		public function build() : void {
+		public function build(stageSize:Object) : void {
 			_loadingView = new LoadingView();
-			_userSelectionView = new UserSelectionView();
+			_userSelectionView = new UserSelectionView(stageSize.w, stageSize.h);
 			_userSettingsView = new UserSettingsView();
 			_progressView = new ProgressView();
 			_progressView.visible = false;

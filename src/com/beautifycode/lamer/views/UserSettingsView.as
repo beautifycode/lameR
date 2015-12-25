@@ -42,6 +42,7 @@ package com.beautifycode.lamer.views {
 			_outputPathLabel = new Label();
 			_outputPathLabel.text = "Output Path:";
 			_outputFileText = new Text();
+			_outputFileText.text = "Same directory.";
 
 			_changeOutputPathBtn = new PushButton();
 			_changeOutputPathBtn.label = "Change";

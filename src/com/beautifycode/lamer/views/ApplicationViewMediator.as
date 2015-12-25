@@ -4,6 +4,7 @@ package com.beautifycode.lamer.views {
 	import com.beautifycode.helpers.Debug;
 	import com.beautifycode.lamer.controller.events.ConversionEvent;
 	import com.beautifycode.lamer.controller.events.UserEvent;
+	import com.beautifycode.lamer.models.ApplicationModel;
 	import com.beautifycode.lamer.models.ConversionModel;
 
 	import flash.filesystem.File;
@@ -17,12 +18,14 @@ package com.beautifycode.lamer.views {
 
 		[Inject]
 		public var conversionModel : ConversionModel;
+		[Inject]
+		public var applicationModel : ApplicationModel;
 		private var _userEvent : UserEvent;
 		private var _selectedUserFile : File;
 
 		override public function initialize() : void {
 			// @TODO: Add drag&drop on view
-			view.build();
+			view.build(applicationModel.stageSizeObject);
 
 			addViewListener(UserEvent.SELECT_FILE, dispatch, UserEvent);
 
