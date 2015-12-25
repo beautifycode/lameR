@@ -1,14 +1,15 @@
-# lameR v0.1.6
+# lameR 0.1.6
 The most simple native audio-converter based upon lame 3.99.5 &amp; Adobe AIR 20.0.
-
 Built with Love, Robotlegs 2.2.1 & FDT Milestone 9.
-
 Currently supported: OSX 9+
+
+# Author
+Marvin Blase
 
 # Features
 - Basic functionality warranted
 
-## To Come
+### To Come
 - FLAC support
 - mp3 tagging
 - Normalize DB w/ compression
@@ -22,3 +23,6 @@ Currently supported: OSX 9+
 - Dock and Desktop Icon Drop
 - Concat silences
 - Lossless conversion
+
+### License
+Copyright (c) <2010> Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
