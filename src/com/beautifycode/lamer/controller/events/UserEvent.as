@@ -6,6 +6,8 @@ package com.beautifycode.lamer.controller.events {
 	 */
 	public class UserEvent extends Event {
 		public static const SELECT_FILE : String = "selectFile";
+		public static const SET_QUALITY : String = "setQuality";
+		public static const START_CONVERSION : String = "startConversion";
 		public var payload : Object;
 
 		public function UserEvent(type : String, bubbles : Boolean = false, cancelable : Boolean = false) {
@@ -13,7 +15,7 @@ package com.beautifycode.lamer.controller.events {
 		}
 
 		override public function clone() : Event {
-			var clonedEvent = new UserEvent(type, bubbles, cancelable);
+			var clonedEvent:UserEvent = new UserEvent(type, bubbles, cancelable);
 			if(this.payload) clonedEvent.payload = this.payload;
 
 			return clonedEvent;

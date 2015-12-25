@@ -1,7 +1,4 @@
 package com.beautifycode.lamer.views {
-	import com.bit101.components.PushButton;
-	import com.bit101.components.Text;
-
 	import flash.display.Sprite;
 
 	/**
@@ -13,6 +10,7 @@ package com.beautifycode.lamer.views {
 		private var _userSelectionView : UserSelectionView;
 		private var _preferencesView : PreferencesView;
 		private var _progressView : ProgressView;
+		private var _userSettingsView : UserSettingsView;
 
 		public function ApplicationView() {
 		}
@@ -20,11 +18,13 @@ package com.beautifycode.lamer.views {
 		public function build() : void {
 			_loadingView = new LoadingView();
 			_userSelectionView = new UserSelectionView();
+			_userSettingsView = new UserSettingsView();
 			_progressView = new ProgressView();
 			_preferencesView = new PreferencesView();
 			
 			addChild(_userSelectionView);
-			addChild(_progressView);
+			addChild(_userSettingsView);
+//			addChild(_progressView);
 		
 			_layout();
 		}
@@ -32,10 +32,17 @@ package com.beautifycode.lamer.views {
 		private function _layout() : void {
 			// @TODO: Assets & Design for InitialSelectionView
 		}
+		
+		public function showConversionSettings() : void {
+			// @TODO: Transitions
+			_userSelectionView.visible = false;
+			_userSettingsView.visible = true;
+		}
 
 		public function showProgress(ps : String) : void {
 			_progressView.textArea.text += ps + "\n";
 		}
+
 
 	}
 }

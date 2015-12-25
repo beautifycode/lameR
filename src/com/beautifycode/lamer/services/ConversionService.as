@@ -2,6 +2,7 @@ package com.beautifycode.lamer.services {
 	import com.beautifycode.helpers.Debug;
 	import com.beautifycode.lamer.controller.events.ConversionEvent;
 	import com.beautifycode.lamer.models.ConversionModel;
+	import com.beautifycode.lamer.models.SettingsModel;
 
 	import flash.desktop.NativeProcess;
 	import flash.desktop.NativeProcessStartupInfo;
@@ -21,6 +22,12 @@ package com.beautifycode.lamer.services {
 
 		[Inject]
 		public var conversionModel : ConversionModel;
+		
+		[Inject]
+		public var settingsModel : SettingsModel;
+
+		[Inject]
+		public var preferencesModel : SettingsModel;
 		private static var cleanPercentPattern : RegExp = /[(].*[)]/;
 		private var _selectedUserFilePath : String;
 		private var _selectedOutputFilePath : String = "";
@@ -30,19 +37,18 @@ package com.beautifycode.lamer.services {
 		private var _nativeProcessStartupInfo : NativeProcessStartupInfo;
 		private var _metaString : String;
 		private var _byteIndex : uint;
+		private var _chmodSet : Boolean;
 
 		public function startConversion(fp : String) : void {
 			_selectedUserFilePath = fp;
 			_nativeProcess = new NativeProcess();
 			_setupNativeProgressEvents(_nativeProcess);
 
-			// @TODO: libpath
 			_lameFile = File.applicationDirectory.resolvePath("lame");
 			_nativeProcessStartupInfo = new NativeProcessStartupInfo();
 			_nativeProcessStartupInfo.executable = _lameFile;
-			
-			Debug.log(Capabilities.os.indexOf('Mac OS'));
-			if (Capabilities.os.indexOf('Mac OS') > -1) {
+
+			if (Capabilities.os.indexOf('Mac OS') > -1 && !_chmodSet) {
 				_changeCHMOD();
 			} else {
 				_chmodChanged(null);
@@ -54,20 +60,22 @@ package com.beautifycode.lamer.services {
 			var nativeProcess : NativeProcess = new NativeProcess();
 			var chmodStartupInfo : NativeProcessStartupInfo = new NativeProcessStartupInfo();
 			chmodStartupInfo.executable = _chmod;
-			
+
 			var args : Vector.<String> = new Vector.<String>();
 			args.push('-c');
-			args.push('chmod ugo+x ' + _lameFile.nativePath + '');
+			args.push('chmod ugo+x ' + _lameFile.nativePath);
 			chmodStartupInfo.arguments = args;
-			
+
 			nativeProcess.addEventListener(Event.STANDARD_OUTPUT_CLOSE, _chmodChanged);
 			nativeProcess.start(chmodStartupInfo);
 		}
 
 		private function _chmodChanged(event : Event) : void {
+			_chmodSet = true;
+
 			// @TODO: Fill via ui settings
 			_processArgs = new Vector.<String>();
-			_processArgs.push("--preset", "192", _selectedUserFilePath, _selectedOutputFilePath);
+			_processArgs.push("--preset", preferencesModel.quality.toString(), settingsModel.userFilePath, _selectedOutputFilePath);
 
 			_nativeProcessStartupInfo.arguments = _processArgs;
 			_nativeProcess.start(_nativeProcessStartupInfo);

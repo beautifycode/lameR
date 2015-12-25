@@ -6,11 +6,6 @@ package com.beautifycode.lamer.views {
 	import com.beautifycode.lamer.controller.events.UserEvent;
 	import com.beautifycode.lamer.models.ConversionModel;
 
-	import flash.desktop.ClipboardFormats;
-	import flash.desktop.NativeDragManager;
-	import flash.events.Event;
-	import flash.events.MouseEvent;
-	import flash.events.NativeDragEvent;
 	import flash.filesystem.File;
 
 	/**
@@ -31,9 +26,14 @@ package com.beautifycode.lamer.views {
 
 			addViewListener(UserEvent.SELECT_FILE, dispatch, UserEvent);
 
+			addContextListener(ConversionEvent.FILEPATH_SET, _onFilePathSet);
 			addContextListener(ConversionEvent.START, _onProgressStart);
 			addContextListener(ConversionEvent.PROGRESS, _onProgress);
 			addContextListener(ConversionEvent.FINISHED, _onProgressFinished);
+		}
+
+		private function _onFilePathSet(event : ConversionEvent) : void {
+			view.showConversionSettings();
 		}
 
 		private function _onProgressStart(event : ConversionEvent) : void {

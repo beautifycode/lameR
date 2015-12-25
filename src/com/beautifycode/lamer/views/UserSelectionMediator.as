@@ -2,7 +2,6 @@ package com.beautifycode.lamer.views {
 	import robotlegs.bender.bundles.mvcs.Mediator;
 
 	import com.beautifycode.helpers.Debug;
-	import com.beautifycode.lamer.controller.events.ConversionEvent;
 	import com.beautifycode.lamer.controller.events.UserEvent;
 	import com.beautifycode.lamer.models.ConversionModel;
 

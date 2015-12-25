@@ -10,7 +10,6 @@ package com.beautifycode.lamer.views {
 	public class UserSelectionView extends Sprite {
 		private var _dragArea : Sprite;
 		private var _selectFileBtn : PushButton;
-		private var _textArea : Text;
 
 		public function UserSelectionView() {
 			_dragArea = new Sprite();
