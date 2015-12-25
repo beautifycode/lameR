@@ -33,12 +33,18 @@ package com.beautifycode.lamer.views {
 
 		override public function initialize() : void {
 			view.visible = false;
-			addContextListener(ConversionEvent.INITIAL_FILEPATH_SET, _showSettings);
+			addContextListener(ConversionEvent.INITIAL_INPUTFILEPATH_SET, _showSettings);
 			addViewListener(UserEvent.START_CONVERSION, dispatch, UserEvent);
 			addViewListener(UserEvent.SET_QUALITY, _setQuality);
+			addViewListener(UserEvent.CHANGE_INPUTFILE, _changeInputPath);
+			addViewListener(UserEvent.CHANGE_OUTPUTFILE, _changeOutputPath);
 		}
 
-		private function _changeInputPath(event : MouseEvent) : void {
+		private function _showSettings(event : ConversionEvent) : void {
+			view.build(settingsModel.inputFilePath, settingsModel.availableQualities);
+		}
+		
+		private function _changeInputPath(event : UserEvent) : void {
 			_inputFile = new File();
 			_inputFile.addEventListener(Event.SELECT, _onInputFileSelected);
 			_inputFile.browse([applicationModel.fileFilter]);
@@ -49,7 +55,7 @@ package com.beautifycode.lamer.views {
 			view.inputFileText.text = _inputFile.nativePath;
 		}
 
-		private function _changeOutputPath(event : MouseEvent) : void {
+		private function _changeOutputPath(event : UserEvent) : void {
 			_outputFile = new File();
 			_outputFile.addEventListener(Event.SELECT, _onOutputFileSelected);
 			_outputFile.browseForSave("Save..");
@@ -62,12 +68,6 @@ package com.beautifycode.lamer.views {
 
 		private function _setQuality(event : UserEvent) : void {
 			settingsModel.quality = settingsModel.availableQualities[event.payload.qualityIndex].val;
-		}
-
-		private function _showSettings(event : ConversionEvent) : void {
-			view.build(settingsModel.inputFilePath, settingsModel.availableQualities);
-			view.changeOutputPathBtn.addEventListener(MouseEvent.CLICK, _changeOutputPath);
-			view.changeInputPathBtn.addEventListener(MouseEvent.CLICK, _changeInputPath);
 		}
 	}
 }

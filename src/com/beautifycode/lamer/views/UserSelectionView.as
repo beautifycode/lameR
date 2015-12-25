@@ -1,5 +1,4 @@
 package com.beautifycode.lamer.views {
-	import flash.text.TextFieldAutoSize;
 	import com.bit101.components.Label;
 	import com.bit101.components.PushButton;
 

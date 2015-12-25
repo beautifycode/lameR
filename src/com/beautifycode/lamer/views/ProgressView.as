@@ -1,4 +1,5 @@
 package com.beautifycode.lamer.views {
+	import com.bit101.components.TextArea;
 	import com.bit101.components.Text;
 
 	import flash.display.Sprite;
@@ -10,11 +11,12 @@ package com.beautifycode.lamer.views {
 		private var _textArea : Text;
 
 		public function ProgressView() {
-			_textArea = new Text();
+			_textArea = new TextArea();
 			_textArea.editable = false;
-			_textArea.text = "Waiting for file";
+			_textArea.text = "";
 			_textArea.x = 0;
-			_textArea.y = 300;
+			_textArea.width = 350;
+			_textArea.y = 200;
 			addChild(_textArea);
 		}
 

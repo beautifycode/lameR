@@ -4,7 +4,7 @@ package com.beautifycode.lamer.controller.events {
 	 * @author marvin
 	 */
 	public class ConversionEvent extends Event {
-		public static const INITIAL_FILEPATH_SET : String = "filePathSet";
+		public static const INITIAL_INPUTFILEPATH_SET : String = "filePathSet";
 		public static const START : String = "start";
 		public static const PROGRESS : String = "progress";
 		public static const FINISHED : String = "finished";

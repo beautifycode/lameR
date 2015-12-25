@@ -1,4 +1,4 @@
-# lameR 0.1.8
+# lameR 0.2.0
 The most simple native audio-converter based upon lame 3.99.5 &amp; Adobe AIR 20.0.
 
 Built with Love, Robotlegs 2.2.1 & FDT Milestone 9.
@@ -12,17 +12,14 @@ Marvin Blase
 ### 0.1.0
 - Basic wav-to-mp3 convert functionality warranted
 
-### 0.1.3
+### 0.2.0
 - Drag & Drop available
-
-### 0.1.6
 - OSX native installer w/ lame 3.99.5 
-- Simple UI setup
-
-### 0.1.8
+- UI
 - Added quality settings 
 - Specify output filepath
 - Change inputfile afterwards
+- Show progress while converting
 
 # Features (tbc)
 - FLAC support

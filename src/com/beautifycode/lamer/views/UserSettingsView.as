@@ -1,5 +1,4 @@
 package com.beautifycode.lamer.views {
-	import com.beautifycode.helpers.Debug;
 	import com.beautifycode.lamer.controller.events.UserEvent;
 	import com.bit101.components.ComboBox;
 	import com.bit101.components.Label;
@@ -44,10 +43,13 @@ package com.beautifycode.lamer.views {
 			_outputFileText = new Text();
 			_outputFileText.text = "Same directory.";
 
-			_changeOutputPathBtn = new PushButton();
-			_changeOutputPathBtn.label = "Change";
 			_changeInputPathBtn = new PushButton();
+			_changeInputPathBtn.addEventListener(MouseEvent.CLICK, _changeInputPath);
 			_changeInputPathBtn.label = "Change";
+
+			_changeOutputPathBtn = new PushButton();
+			_changeOutputPathBtn.addEventListener(MouseEvent.CLICK, _changeOutputPath);
+			_changeOutputPathBtn.label = "Change";
 
 			_qualityBox = new ComboBox();
 			_qualityBox.defaultLabel = "Quality:";
@@ -75,9 +77,9 @@ package com.beautifycode.lamer.views {
 			_position(_changeOutputPathBtn, 350, 80, 100);
 
 			_position(_qualityLabel, 0, 130, 100);
-			_position(_qualityBox, 0, 150, 100);
+			_position(_qualityBox, 0, 150, 150);
 
-			_position(_convertBtn, 150, 150, 100);
+			_position(_convertBtn, 200, 150, 150);
 
 			addChild(_inputPathLabel);
 			addChild(_inputFileText);
@@ -90,6 +92,17 @@ package com.beautifycode.lamer.views {
 			addChild(_qualityBox);
 			addChild(_convertBtn);
 		}
+
+		private function _changeInputPath(event : MouseEvent) : void {
+			_userEvent = new UserEvent(UserEvent.CHANGE_INPUTFILE, false, false);
+			dispatchEvent(_userEvent);
+		}
+
+		private function _changeOutputPath(event : MouseEvent) : void {
+			_userEvent = new UserEvent(UserEvent.CHANGE_OUTPUTFILE, false, false);
+			dispatchEvent(_userEvent);
+		}
+
 
 		private function _onQualitySelect(event : Event) : void {
 			_userEvent = new UserEvent(UserEvent.SET_QUALITY, true, false);

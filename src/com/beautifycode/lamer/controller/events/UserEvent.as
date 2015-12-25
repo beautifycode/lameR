@@ -8,6 +8,8 @@ package com.beautifycode.lamer.controller.events {
 		public static const SELECT_FILE : String = "selectFile";
 		public static const SET_QUALITY : String = "setQuality";
 		public static const START_CONVERSION : String = "startConversion";
+		public static const CHANGE_INPUTFILE : String = "inputfilepathChanged";
+		public static const CHANGE_OUTPUTFILE : String = "outfilepathChanged";
 		public var payload : Object;
 
 		public function UserEvent(type : String, bubbles : Boolean = false, cancelable : Boolean = false) {
