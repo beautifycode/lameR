@@ -1,5 +1,6 @@
 package com.beautifycode.lamer.models {
 	import com.beautifycode.helpers.Debug;
+	import com.beautifycode.lamer.controller.ConversionLookupMap;
 	import com.beautifycode.lamer.controller.events.ConversionEvent;
 
 	import flash.events.IEventDispatcher;
@@ -11,7 +12,6 @@ package com.beautifycode.lamer.models {
 		[Inject]
 		public var eventDispatcher : IEventDispatcher;
 
-		public static const ERROR_CODE : int = -1;
 		private var _state : String;
 		private var _progress : int;
 		private var _conversionEvent : ConversionEvent;
@@ -38,7 +38,7 @@ package com.beautifycode.lamer.models {
 			}
 
 			// @TODO: Check if real error or just missing meta
-			if (_progress == ConversionModel.ERROR_CODE) {
+			if (_progress == ConversionLookupMap.ERROR_CODE) {
 				// state = ConversionEvent.ERROR;
 				Debug.log("No progress parsed");
 				return;

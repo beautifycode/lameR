@@ -29,7 +29,7 @@ package com.beautifycode.lamer.views {
 
 			addViewListener(UserEvent.SELECT_FILE, dispatch, UserEvent);
 
-			addContextListener(ConversionEvent.FILEPATH_SET, _onFilePathSet);
+			addContextListener(ConversionEvent.INITIAL_FILEPATH_SET, _onFilePathSet);
 			addContextListener(ConversionEvent.START, _onProgressStart);
 			addContextListener(ConversionEvent.PROGRESS, _onProgress);
 			addContextListener(ConversionEvent.FINISHED, _onProgressFinished);

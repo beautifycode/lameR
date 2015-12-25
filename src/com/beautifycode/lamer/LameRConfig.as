@@ -5,7 +5,7 @@ package com.beautifycode.lamer {
 	import robotlegs.bender.framework.api.IInjector;
 
 	import com.beautifycode.lamer.commands.ConversionFinishedCommand;
-	import com.beautifycode.lamer.commands.SetFilePathCommand;
+	import com.beautifycode.lamer.commands.SetInitialFilePathCommand;
 	import com.beautifycode.lamer.commands.StartConversionCommand;
 	import com.beautifycode.lamer.controller.events.ConversionEvent;
 	import com.beautifycode.lamer.controller.events.UserEvent;
@@ -40,7 +40,7 @@ package com.beautifycode.lamer {
 			injectormap.map(ApplicationModel).asSingleton();
 			injectormap.map(SettingsModel).asSingleton();
 
-			commandmap.map(UserEvent.SELECT_FILE).toCommand(SetFilePathCommand).withPayloadInjection();
+			commandmap.map(UserEvent.SELECT_FILE).toCommand(SetInitialFilePathCommand).withPayloadInjection();
 			commandmap.map(UserEvent.START_CONVERSION).toCommand(StartConversionCommand);		
 			commandmap.map(ConversionEvent.FINISHED).toCommand(ConversionFinishedCommand);
 

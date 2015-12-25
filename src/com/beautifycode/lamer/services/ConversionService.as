@@ -1,5 +1,6 @@
 package com.beautifycode.lamer.services {
 	import com.beautifycode.helpers.Debug;
+	import com.beautifycode.lamer.controller.ConversionLookupMap;
 	import com.beautifycode.lamer.controller.events.ConversionEvent;
 	import com.beautifycode.lamer.models.ConversionModel;
 	import com.beautifycode.lamer.models.SettingsModel;
@@ -27,7 +28,6 @@ package com.beautifycode.lamer.services {
 		public var settingsModel : SettingsModel;
 
 		private static var cleanPercentPattern : RegExp = /[(].*[)]/;
-		private var _selectedOutputFilePath : String = "";
 		private var _lameFile : File;
 		private var _nativeProcess : NativeProcess;
 		private var _processArgs : Vector.<String>;
@@ -71,7 +71,7 @@ package com.beautifycode.lamer.services {
 
 			// @TODO: Fill via ui settings
 			_processArgs = new Vector.<String>();
-			_processArgs.push("--preset", settingsModel.quality.toString(), settingsModel.userFilePath, _selectedOutputFilePath);
+			_processArgs.push("--preset", settingsModel.quality.toString(), settingsModel.inputFilePath, settingsModel.outputFilePath);
 
 			_nativeProcessStartupInfo.arguments = _processArgs;
 			_nativeProcess.start(_nativeProcessStartupInfo);
@@ -106,7 +106,7 @@ package com.beautifycode.lamer.services {
 
 		private function _generateCleanPercentages(ms : String) : int {
 			var po : Object = cleanPercentPattern.exec(ms);
-			if (!po) return ConversionModel.ERROR_CODE;
+			if (!po) return ConversionLookupMap.ERROR_CODE;
 
 			var cpi : int;
 			var cps : String;

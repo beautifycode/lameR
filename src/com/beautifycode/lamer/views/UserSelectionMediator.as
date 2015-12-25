@@ -68,11 +68,11 @@ package com.beautifycode.lamer.views {
 
 		private function _onFileSelectClick(event : MouseEvent) : void {
 			_selectedUserFile = new File();
-			_selectedUserFile.addEventListener(Event.SELECT, _onFileFromSystemSelected);
+			_selectedUserFile.addEventListener(Event.SELECT, _onInputFileSelected);
 			_selectedUserFile.browse([applicationModel.fileFilter]);
 		}
 
-		private function _onFileFromSystemSelected(event : Event) : void {
+		private function _onInputFileSelected(event : Event) : void {
 			_userEvent = new UserEvent(UserEvent.SELECT_FILE, true, false);
 			_userEvent.payload = {filepath:_selectedUserFile.nativePath};
 			eventDispatcher.dispatchEvent(_userEvent);
