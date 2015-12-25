@@ -10,6 +10,7 @@ package com.beautifycode.lamer.services {
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
 	import flash.filesystem.File;
+	import flash.system.Capabilities;
 
 	/**
 	 * @author marvin
@@ -17,6 +18,7 @@ package com.beautifycode.lamer.services {
 	public class ConversionService {
 		[Inject]
 		public var eventDispatcher : IEventDispatcher;
+
 		[Inject]
 		public var conversionModel : ConversionModel;
 		private static var cleanPercentPattern : RegExp = /[(].*[)]/;
@@ -35,15 +37,38 @@ package com.beautifycode.lamer.services {
 			_setupNativeProgressEvents(_nativeProcess);
 
 			// @TODO: libpath
-			_lameFile = File.desktopDirectory.resolvePath("lame");
+			_lameFile = File.applicationDirectory.resolvePath("lame");
 			_nativeProcessStartupInfo = new NativeProcessStartupInfo();
 			_nativeProcessStartupInfo.executable = _lameFile;
+			
+			Debug.log(Capabilities.os.indexOf('Mac OS'));
+			if (Capabilities.os.indexOf('Mac OS') > -1) {
+				_changeCHMOD();
+			} else {
+				_chmodChanged(null);
+			}
+		}
 
+		private function _changeCHMOD() : void {
+			var _chmod : File = new File('/bin/bash');
+			var nativeProcess : NativeProcess = new NativeProcess();
+			var chmodStartupInfo : NativeProcessStartupInfo = new NativeProcessStartupInfo();
+			chmodStartupInfo.executable = _chmod;
+			
+			var args : Vector.<String> = new Vector.<String>();
+			args.push('-c');
+			args.push('chmod ugo+x ' + _lameFile.nativePath + '');
+			chmodStartupInfo.arguments = args;
+			
+			nativeProcess.addEventListener(Event.STANDARD_OUTPUT_CLOSE, _chmodChanged);
+			nativeProcess.start(chmodStartupInfo);
+		}
+
+		private function _chmodChanged(event : Event) : void {
 			// @TODO: Fill via ui settings
 			_processArgs = new Vector.<String>();
 			_processArgs.push("--preset", "192", _selectedUserFilePath, _selectedOutputFilePath);
 
-			// @TODO: Release from FileService, add to ConversionService
 			_nativeProcessStartupInfo.arguments = _processArgs;
 			_nativeProcess.start(_nativeProcessStartupInfo);
 
@@ -77,8 +102,8 @@ package com.beautifycode.lamer.services {
 
 		private function _generateCleanPercentages(ms : String) : int {
 			var po : Object = cleanPercentPattern.exec(ms);
-			if(!po) return ConversionModel.ERROR_CODE;
-			
+			if (!po) return ConversionModel.ERROR_CODE;
+
 			var cpi : int;
 			var cps : String;
 			var ps : String = po[0];

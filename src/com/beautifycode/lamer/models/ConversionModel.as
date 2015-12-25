@@ -13,6 +13,7 @@ package com.beautifycode.lamer.models {
 		[Inject]
 		public var eventDispatcher : IEventDispatcher;
 		private var _userFilePath : String;
+		private var _outputPath : String;
 		private var _state : String;
 		private var _progress : int;
 		private var _conversionEvent : ConversionEvent;
