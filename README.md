@@ -9,6 +9,8 @@ Currently supported: OSX 9+
 - Basic functionality warranted
 
 ## To Come
+- FLAC support
+- mp3 tagging
 - Normalize DB w/ compression
 - 3-Band-EQ w/ Notch, Bell, Low- and Highcut
 - Automatic Upload via Dropbox, Soundcloud

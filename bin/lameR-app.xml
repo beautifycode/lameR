@@ -142,7 +142,7 @@
 	Optional. Default false. -->
   <!-- <allowBrowserInvocation></allowBrowserInvocation> -->
   <!-- Listing of file types for which the application can register. Optional. -->
-  <!-- <fileTypes> -->
+  <fileTypes>wav mp3</fileTypes>
   <!-- Defines one file type. Optional. -->
   <!-- <fileType> -->
   <!-- The name that the system displays for the registered file type. Required. -->

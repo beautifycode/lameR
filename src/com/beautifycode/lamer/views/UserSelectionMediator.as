@@ -3,6 +3,7 @@ package com.beautifycode.lamer.views {
 
 	import com.beautifycode.helpers.Debug;
 	import com.beautifycode.lamer.controller.events.UserEvent;
+	import com.beautifycode.lamer.models.ApplicationModel;
 	import com.beautifycode.lamer.models.ConversionModel;
 
 	import flash.desktop.ClipboardFormats;
@@ -21,8 +22,12 @@ package com.beautifycode.lamer.views {
 
 		[Inject]
 		public var conversionModel : ConversionModel;
+
+		[Inject]
+		public var applicationModel : ApplicationModel;
 		private var _userEvent : UserEvent;
 		private var _selectedUserFile : File;
+		private var _draggingFiles : Array;
 
 		override public function initialize() : void {
 			// @TODO: Add drag&drop on view
@@ -36,15 +41,24 @@ package com.beautifycode.lamer.views {
 		}
 
 		private function _onDragEnter(event : NativeDragEvent) : void {
-			NativeDragManager.acceptDragDrop(view);
 			// @TODO: Show DragAreaPreview
+			
+			_draggingFiles = event.clipboard.getData(ClipboardFormats.FILE_LIST_FORMAT) as Array;
+			for each (var file : File in _draggingFiles) {
+				if (!applicationModel.validFileTypes[file.extension.toLowerCase()])
+					return;
+			}
+
+			NativeDragManager.acceptDragDrop(view);
 		}
 
 		private function _onDropComplete(event : NativeDragEvent) : void {
 			Debug.log("UserSelectionMediator - _onDropComplete");
-			var f : Array = event.clipboard.getData(ClipboardFormats.FILE_LIST_FORMAT) as Array;
+			_draggingFiles = event.clipboard.getData(ClipboardFormats.FILE_LIST_FORMAT) as Array;
 			_userEvent = new UserEvent(UserEvent.SELECT_FILE, true, false);
-			_userEvent.payload = {filepath:f[0].nativePath};
+			
+			// @TODO: Allow batchdrop
+			_userEvent.payload = {filepath:_draggingFiles[0].nativePath};
 			eventDispatcher.dispatchEvent(_userEvent);
 		}
 
@@ -55,7 +69,7 @@ package com.beautifycode.lamer.views {
 		private function _onFileSelectClick(event : MouseEvent) : void {
 			_selectedUserFile = new File();
 			_selectedUserFile.addEventListener(Event.SELECT, _onFileFromSystemSelected);
-			_selectedUserFile.browse();
+			_selectedUserFile.browse([applicationModel.fileFilter]);
 		}
 
 		private function _onFileFromSystemSelected(event : Event) : void {

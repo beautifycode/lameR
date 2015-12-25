@@ -9,6 +9,7 @@ package com.beautifycode.lamer {
 	import com.beautifycode.lamer.commands.StartConversionCommand;
 	import com.beautifycode.lamer.controller.events.ConversionEvent;
 	import com.beautifycode.lamer.controller.events.UserEvent;
+	import com.beautifycode.lamer.models.ApplicationModel;
 	import com.beautifycode.lamer.models.ConversionModel;
 	import com.beautifycode.lamer.models.SettingsModel;
 	import com.beautifycode.lamer.services.ConversionService;
@@ -36,6 +37,7 @@ package com.beautifycode.lamer {
 			// @TODO: NNF Singletons
 			injectormap.map(ConversionService).asSingleton();
 			injectormap.map(ConversionModel).asSingleton();
+			injectormap.map(ApplicationModel).asSingleton();
 			injectormap.map(SettingsModel).asSingleton();
 
 			commandmap.map(UserEvent.SELECT_FILE).toCommand(SetFilePathCommand).withPayloadInjection();
