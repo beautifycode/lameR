@@ -4,9 +4,11 @@ package com.beautifycode.lamer.controller.events {
 	 * @author marvin
 	 */
 	public class ConversionEvent extends Event {
+		public static const FILEPATH_SET : String = "filePathSet";
 		public static const START : String = "start";
 		public static const PROGRESS : String = "progress";
 		public static const FINISHED : String = "finished";
+		public static const STREAM_CLOSED : String = "streamClosed";
 		public var payload : Object;
 
 		public function ConversionEvent(type : String, bubbles : Boolean = false, cancelable : Boolean = false) {
@@ -15,7 +17,7 @@ package com.beautifycode.lamer.controller.events {
 
 		override public function clone() : Event {
 			var clonedEvent : ConversionEvent = new ConversionEvent(type, bubbles, cancelable);
-			clonedEvent.payload = this.payload;
+			if(this.payload) clonedEvent.payload = this.payload;
 			return clonedEvent;
 		}
 	}
