@@ -26,10 +26,7 @@ package com.beautifycode.lamer.services {
 		[Inject]
 		public var settingsModel : SettingsModel;
 
-		[Inject]
-		public var preferencesModel : SettingsModel;
 		private static var cleanPercentPattern : RegExp = /[(].*[)]/;
-		private var _selectedUserFilePath : String;
 		private var _selectedOutputFilePath : String = "";
 		private var _lameFile : File;
 		private var _nativeProcess : NativeProcess;
@@ -39,8 +36,7 @@ package com.beautifycode.lamer.services {
 		private var _byteIndex : uint;
 		private var _chmodSet : Boolean;
 
-		public function startConversion(fp : String) : void {
-			_selectedUserFilePath = fp;
+		public function startConversion() : void {
 			_nativeProcess = new NativeProcess();
 			_setupNativeProgressEvents(_nativeProcess);
 
@@ -75,7 +71,7 @@ package com.beautifycode.lamer.services {
 
 			// @TODO: Fill via ui settings
 			_processArgs = new Vector.<String>();
-			_processArgs.push("--preset", preferencesModel.quality.toString(), settingsModel.userFilePath, _selectedOutputFilePath);
+			_processArgs.push("--preset", settingsModel.quality.toString(), settingsModel.userFilePath, _selectedOutputFilePath);
 
 			_nativeProcessStartupInfo.arguments = _processArgs;
 			_nativeProcess.start(_nativeProcessStartupInfo);

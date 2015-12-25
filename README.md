@@ -1,4 +1,4 @@
-# lameR v0.1
+# lameR v0.1.5
 The most simple native audio-converter based upon lame &amp; Adobe AIR.
 
 Built with Love, Robotlegs 2.2.1 & FDT Milestone 9.

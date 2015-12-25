@@ -38,10 +38,7 @@ package com.beautifycode.lamer {
 			injectormap.map(ConversionModel).asSingleton();
 			injectormap.map(SettingsModel).asSingleton();
 
-			// carries filepath via dnd&select
 			commandmap.map(UserEvent.SELECT_FILE).toCommand(SetFilePathCommand).withPayloadInjection();
-			
-			// @TODO: Has to be executed from UI w/ settings. FILEPATH_SET > UI change w/ Prelisten
 			commandmap.map(UserEvent.START_CONVERSION).toCommand(StartConversionCommand);		
 			commandmap.map(ConversionEvent.FINISHED).toCommand(ConversionFinishedCommand);
 

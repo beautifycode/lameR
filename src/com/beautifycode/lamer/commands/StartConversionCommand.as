@@ -11,11 +11,8 @@ package com.beautifycode.lamer.commands {
 		[Inject]
 		public var fileService:ConversionService;
 		
-		[Inject]
-		public var settingsModel : SettingsModel;
-		
 		override public function execute() : void {
-			fileService.startConversion(settingsModel.userFilePath);
+			fileService.startConversion();
 		}
 	}
 }

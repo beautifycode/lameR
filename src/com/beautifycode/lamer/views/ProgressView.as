@@ -14,7 +14,7 @@ package com.beautifycode.lamer.views {
 			_textArea.editable = false;
 			_textArea.text = "Waiting for file";
 			_textArea.x = 0;
-			_textArea.y = 200;
+			_textArea.y = 300;
 			addChild(_textArea);
 		}
 

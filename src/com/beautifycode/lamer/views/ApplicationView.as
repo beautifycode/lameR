@@ -20,17 +20,18 @@ package com.beautifycode.lamer.views {
 			_userSelectionView = new UserSelectionView();
 			_userSettingsView = new UserSettingsView();
 			_progressView = new ProgressView();
+			_progressView.visible = false;
 			_preferencesView = new PreferencesView();
 			
 			addChild(_userSelectionView);
 			addChild(_userSettingsView);
-//			addChild(_progressView);
+			addChild(_progressView);
 		
 			_layout();
 		}
 
 		private function _layout() : void {
-			// @TODO: Assets & Design for InitialSelectionView
+			// @TODO: Prepare transitional layout
 		}
 		
 		public function showConversionSettings() : void {
@@ -40,9 +41,8 @@ package com.beautifycode.lamer.views {
 		}
 
 		public function showProgress(ps : String) : void {
+			_progressView.visible = true;
 			_progressView.textArea.text += ps + "\n";
 		}
-
-
 	}
 }
