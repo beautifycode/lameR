@@ -3,7 +3,7 @@
 	<id>com.beautifycode.lamer</id>
 	<filename>lameR</filename>
 	<name>lameR</name>
-	<versionNumber>0.2.5</versionNumber>
+	<versionNumber>0.2.7</versionNumber>
 	<initialWindow>
 		<content>lameR.swf</content>
 		<x>0</x>

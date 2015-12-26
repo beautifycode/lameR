@@ -20,13 +20,14 @@ Marvin Blase
 - Specify output filepath
 - Change inputfile afterwards
 - Show progress while converting
-- OSX native invokation w/ WAV files implemented 
+- OSX native invocation w/ WAV files implemented 
 - Added temporary AppIcons & About
 - Included AAR® 20.0
 
-### 0.2.5
+### 0.2.7
 - Added local preferences file + boot sequence
 - Save quality settings on exit & load again on launch
+- Added Macrobot & AIRUpdateHelper
 
 # Features (tbc)
 - FLAC support
