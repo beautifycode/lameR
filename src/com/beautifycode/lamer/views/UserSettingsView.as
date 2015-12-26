@@ -32,7 +32,7 @@ package com.beautifycode.lamer.views {
 		}
 
 		// Will be replaced with assets
-		public function build(ipf : String, qs : Array) : void {
+		public function build(ipf : String, qs : Array, dq:uint) : void {
 			_inputPathLabel = new Label();
 			_inputPathLabel.text = "Input Path:";
 			_inputFileText = new Text();
@@ -59,6 +59,8 @@ package com.beautifycode.lamer.views {
 			for (var i : int; i < qs.length; i++) {
 				_qualityBox.addItem(qs[i]);
 			}
+			
+			_qualityBox.selectedIndex = dq;
 
 			_qualityLabel = new Label();
 			_qualityLabel.text = "Chose quality";

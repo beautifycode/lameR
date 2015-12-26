@@ -1,14 +1,12 @@
 package com.beautifycode.lamer.views {
 	import robotlegs.bender.bundles.mvcs.Mediator;
 
-	import com.beautifycode.lamer.controller.events.ConversionEvent;
 	import com.beautifycode.lamer.controller.events.UserEvent;
 	import com.beautifycode.lamer.models.ApplicationModel;
 	import com.beautifycode.lamer.models.ConversionModel;
 	import com.beautifycode.lamer.models.SettingsModel;
 
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	import flash.filesystem.File;
 
 	/**
@@ -30,18 +28,13 @@ package com.beautifycode.lamer.views {
 		private var _inputFile : File;
 		private var _outputFile : File;
 
-
 		override public function initialize() : void {
-			view.visible = false;
-			addContextListener(ConversionEvent.INITIAL_INPUTFILEPATH_SET, _showSettings);
+			view.build(settingsModel.inputFilePath, settingsModel.availableQualities, settingsModel.qualityIndex);
+
 			addViewListener(UserEvent.START_CONVERSION, dispatch, UserEvent);
 			addViewListener(UserEvent.SET_QUALITY, _setQuality);
 			addViewListener(UserEvent.CHANGE_INPUTFILE, _changeInputPath);
 			addViewListener(UserEvent.CHANGE_OUTPUTFILE, _changeOutputPath);
-		}
-
-		private function _showSettings(event : ConversionEvent) : void {
-			view.build(settingsModel.inputFilePath, settingsModel.availableQualities);
 		}
 		
 		private function _changeInputPath(event : UserEvent) : void {

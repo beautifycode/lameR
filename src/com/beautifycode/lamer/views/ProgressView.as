@@ -1,6 +1,6 @@
 package com.beautifycode.lamer.views {
-	import com.bit101.components.TextArea;
 	import com.bit101.components.Text;
+	import com.bit101.components.TextArea;
 
 	import flash.display.Sprite;
 

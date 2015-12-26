@@ -38,7 +38,7 @@ package com.beautifycode.helpers {
 				trace(t + "s: " + str2 + " | " + str);
 				MonsterDebugger.log(t + "s: " + str2 + " | " + str);
 			} else {
-				trace(t + "s: " + "NOT APPLICABLE" + " | " + str);
+				trace(t + "s: " + str);
 			}
 		}
 

@@ -30,9 +30,6 @@ package com.beautifycode.lamer.views {
 		private var _draggingFiles : Array;
 
 		override public function initialize() : void {
-			// @TODO: Add drag&drop on view
-			addViewListener(UserEvent.SELECT_INITIAL_FILE, dispatch, UserEvent);
-
 			view.selectFileBtn.addEventListener(MouseEvent.CLICK, _onFileSelectClick);
 			view.dragArea.stage.addEventListener(NativeDragEvent.NATIVE_DRAG_ENTER, _onDragEnter);
 			view.dragArea.stage.addEventListener(NativeDragEvent.NATIVE_DRAG_COMPLETE, _onDropComplete);
