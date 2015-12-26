@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://ns.adobe.com/air/application/20.0">
+  <id>com.beautifycode.lamer</id>
+  <filename>lameR</filename>
+  <name>lameR</name>
+  <versionNumber>0.2.1</versionNumber>
+  <initialWindow>
+    <content>lameR.swf</content>
+    <x>200</x>
+    <y>200</y>
+    <minSize>640 400</minSize>
+    <maxSize>640 400</maxSize>
+    <aspectRatio>portrait</aspectRatio>
+    <fullScreen>false</fullScreen>
+    <autoOrients>false</autoOrients>
+    <visible>true</visible>
+    <renderMode>auto</renderMode>
+  </initialWindow>
+  <fileTypes>
+    <fileType>
+      <name>com.beautifycode.lamer.audio</name>
+      <extension>wav</extension>
+      <description>Audio</description>
+      <contentType>audio/wav</contentType>
+    </fileType>
+  </fileTypes>
+  <supportedProfiles>extendedDesktop</supportedProfiles>
+  <icon>
+    <image128x128>AppIcons/128x128-icon128x128.png</image128x128>
+    <image32x32>AppIcons/32x32-icon32x32.png</image32x32>
+    <image16x16>AppIcons/16x16-icon16x16.png</image16x16>
+    <image48x48>AppIcons/48x48-icon48x48.png</image48x48>
+  </icon>
+</application>

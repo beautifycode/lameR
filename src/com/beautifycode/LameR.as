@@ -1,7 +1,4 @@
 package com.beautifycode {
-	import flash.display.StageAlign;
-	import flash.display.StageScaleMode;
-	import flash.display.NativeWindow;
 	import robotlegs.bender.bundles.mvcs.MVCSBundle;
 	import robotlegs.bender.extensions.contextView.ContextView;
 	import robotlegs.bender.framework.api.IContext;
@@ -11,8 +8,12 @@ package com.beautifycode {
 	import com.beautifycode.lamer.views.ApplicationView;
 	import com.demonsters.debugger.MonsterDebugger;
 
+	import flash.desktop.NativeApplication;
 	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.InvokeEvent;
 
 	/**
 	 * @author marvin
@@ -25,22 +26,23 @@ package com.beautifycode {
 		public function LameR() {
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
-			
+
+			MonsterDebugger.initialize(this);
+
 			_contextView = new ContextView(this);
 			_context = new Context()
 				.install(MVCSBundle)
 				.configure(LameRConfig, _contextView);
-				
+
 			// @TODO: Configure AIR application
 			addEventListener(Event.ADDED_TO_STAGE, _onAddedToStage);
 		}
 
 		private function _onAddedToStage(event : Event) : void {
-			MonsterDebugger.initialize(this);
 			_createChildren();
 		}
 
-		private function _createChildren() : void {			
+		private function _createChildren() : void {
 			_mainView = new ApplicationView();
 			addChild(_mainView);
 		}

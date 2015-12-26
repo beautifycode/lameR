@@ -31,7 +31,7 @@ package com.beautifycode.lamer.views {
 
 		override public function initialize() : void {
 			// @TODO: Add drag&drop on view
-			addViewListener(UserEvent.SELECT_FILE, dispatch, UserEvent);
+			addViewListener(UserEvent.SELECT_INITIAL_FILE, dispatch, UserEvent);
 
 			view.selectFileBtn.addEventListener(MouseEvent.CLICK, _onFileSelectClick);
 			view.dragArea.stage.addEventListener(NativeDragEvent.NATIVE_DRAG_ENTER, _onDragEnter);
@@ -55,9 +55,7 @@ package com.beautifycode.lamer.views {
 		private function _onDropComplete(event : NativeDragEvent) : void {
 			Debug.log("UserSelectionMediator - _onDropComplete");
 			_draggingFiles = event.clipboard.getData(ClipboardFormats.FILE_LIST_FORMAT) as Array;
-			_userEvent = new UserEvent(UserEvent.SELECT_FILE, true, false);
-			
-			// @TODO: Allow batchdrop
+			_userEvent = new UserEvent(UserEvent.SELECT_INITIAL_FILE, true, false);
 			_userEvent.payload = {filepath:_draggingFiles[0].nativePath};
 			eventDispatcher.dispatchEvent(_userEvent);
 		}
@@ -73,7 +71,7 @@ package com.beautifycode.lamer.views {
 		}
 
 		private function _onInputFileSelected(event : Event) : void {
-			_userEvent = new UserEvent(UserEvent.SELECT_FILE, true, false);
+			_userEvent = new UserEvent(UserEvent.SELECT_INITIAL_FILE, true, false);
 			_userEvent.payload = {filepath:_selectedUserFile.nativePath};
 			eventDispatcher.dispatchEvent(_userEvent);
 		}

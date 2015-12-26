@@ -40,7 +40,7 @@ package com.beautifycode.lamer {
 			injectormap.map(ApplicationModel).asSingleton();
 			injectormap.map(SettingsModel).asSingleton();
 
-			commandmap.map(UserEvent.SELECT_FILE).toCommand(SetInitialFilePathCommand).withPayloadInjection();
+			commandmap.map(UserEvent.SELECT_INITIAL_FILE).toCommand(SetInitialFilePathCommand).withPayloadInjection();
 			commandmap.map(UserEvent.START_CONVERSION).toCommand(StartConversionCommand);		
 			commandmap.map(ConversionEvent.FINISHED).toCommand(ConversionFinishedCommand);
 

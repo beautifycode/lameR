@@ -8,6 +8,9 @@ package com.beautifycode.lamer.views {
 	import com.beautifycode.lamer.models.ConversionModel;
 	import com.beautifycode.lamer.models.SettingsModel;
 
+	import flash.desktop.NativeApplication;
+	import flash.events.InvokeEvent;
+
 	/**
 	 * @author marvin
 	 */
@@ -21,18 +24,36 @@ package com.beautifycode.lamer.views {
 		[Inject]
 		public var applicationModel : ApplicationModel;
 
+		[Inject]
+		public var settingsModel : SettingsModel;
+
+		private var _userEvent : UserEvent;
+
 
 		override public function initialize() : void {
-			// @TODO: Add drag&drop on view
 			view.build(applicationModel.stageSizeObject);
 
-			addViewListener(UserEvent.SELECT_FILE, dispatch, UserEvent);
+			// @TODO: Work w/ PRE-INIT from RL2
+			NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, _onAppInvoke);
 
+			addViewListener(UserEvent.SELECT_INITIAL_FILE, dispatch, UserEvent);
 			addContextListener(ConversionEvent.INITIAL_INPUTFILEPATH_SET, _onFilePathSet);
-			
+
 			addContextListener(ConversionEvent.START, _onProgressStart);
 			addContextListener(ConversionEvent.PROGRESS, _onProgress);
 			addContextListener(ConversionEvent.FINISHED, _onProgressFinished);
+		}
+
+		private function _onAppInvoke(event : InvokeEvent) : void {
+			if (event.arguments[0]) {
+				if (!settingsModel.inputFilePath) {
+					_userEvent = new UserEvent(UserEvent.SELECT_INITIAL_FILE, true, false);
+					_userEvent.payload = {filepath:event.arguments[0]};
+					eventDispatcher.dispatchEvent(_userEvent);
+				} else {
+					// change input path
+				}
+			}
 		}
 
 		private function _onFilePathSet(event : ConversionEvent) : void {
