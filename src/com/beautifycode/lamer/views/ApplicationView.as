@@ -10,8 +10,6 @@ package com.beautifycode.lamer.views {
 		private var _progressView : ProgressView;
 		private var _userSettingsView : UserSettingsView;
 
-
-
 		public function build(stageSize : Object) : void {
 			_bootView = new BootView(stageSize.w, stageSize.h);
 			_userSelectionView = new UserSelectionView(stageSize.w, stageSize.h);
@@ -19,16 +17,6 @@ package com.beautifycode.lamer.views {
 			_progressView = new ProgressView();
 
 			_showBootView();
-		}
-
-		public function showConversionSettings() : void {
-			addChild(_progressView);
-			addChild(_userSettingsView);
-			trace(_userSettingsView.visible);
-		}
-
-		public function appendLog(s : String) : void {
-			_progressView.textArea.text += s + "\n";
 		}
 
 		private function _showBootView() : void {
@@ -42,9 +30,18 @@ package com.beautifycode.lamer.views {
 		public function showSelectionView() : void {
 			addChild(_userSelectionView);
 		}
-		
+
 		public function hideSelectionView() : void {
 			removeChild(_userSelectionView);
+		}
+
+		public function showConversionSettings() : void {
+			addChild(_progressView);
+			addChild(_userSettingsView);
+		}
+
+		public function appendLog(s : String) : void {
+			_progressView.textArea.text += s + "\n";
 		}
 	}
 }

@@ -27,7 +27,7 @@ package com.beautifycode.lamer.views {
 		override public function initialize() : void {
 			view.build(applicationModel.stageSizeObject);
 
-			addContextListener(ApplicationEvent.PREFERENCES_SET, _onBootFinished);
+			addContextListener(ApplicationEvent.BOOT_COMPLETE, _onBootFinished);
 			addContextListener(ConversionEvent.INITIAL_INPUTFILEPATH_SET, _onFilePathSet);
 			addContextListener(ConversionEvent.START, _onProgressStart);
 			addContextListener(ConversionEvent.PROGRESS, _onProgress);

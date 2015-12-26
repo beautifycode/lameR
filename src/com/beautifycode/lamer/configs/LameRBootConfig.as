@@ -6,12 +6,11 @@ package com.beautifycode.lamer.configs {
 	import robotlegs.bender.framework.api.IInjector;
 
 	import com.beautifycode.helpers.Debug;
-	import com.beautifycode.lamer.commands.BootCommand;
-	import com.beautifycode.lamer.commands.ClosingCommand;
 	import com.beautifycode.lamer.commands.ConversionFinishedCommand;
-	import com.beautifycode.lamer.commands.ExitApplicationCommand;
 	import com.beautifycode.lamer.commands.SetInitialFilePathCommand;
 	import com.beautifycode.lamer.commands.StartConversionCommand;
+	import com.beautifycode.lamer.commands.macros.BootMacro;
+	import com.beautifycode.lamer.commands.macros.ExitMacro;
 	import com.beautifycode.lamer.controller.events.ApplicationEvent;
 	import com.beautifycode.lamer.controller.events.ConversionEvent;
 	import com.beautifycode.lamer.controller.events.UserEvent;
@@ -19,7 +18,6 @@ package com.beautifycode.lamer.configs {
 	import com.beautifycode.lamer.models.ConversionModel;
 	import com.beautifycode.lamer.models.SettingsModel;
 	import com.beautifycode.lamer.services.ConversionService;
-	import com.beautifycode.lamer.services.PreferenceService;
 	import com.beautifycode.lamer.views.ApplicationMediator;
 	import com.beautifycode.lamer.views.ApplicationView;
 	import com.beautifycode.lamer.views.UserSelectionMediator;
@@ -54,16 +52,15 @@ package com.beautifycode.lamer.configs {
 		public function configure() : void {
 			Debug.log("LameRBootConfig");
 			
-			injectormap.map(PreferenceService).asSingleton();
 			injectormap.map(ApplicationModel).asSingleton();
 			injectormap.map(ConversionModel).asSingleton();
 			injectormap.map(ConversionService).asSingleton();
 			injectormap.map(SettingsModel).asSingleton();
 
-			commandmap.map(ApplicationEvent.BOOT).toCommand(BootCommand).withPayloadInjection();
-			commandmap.map(ApplicationEvent.CLOSE).toCommand(ClosingCommand);
-			commandmap.map(ApplicationEvent.PREFERENCES_SAVED_BEFORE_CLOSE).toCommand(ExitApplicationCommand);
-			commandmap.map(UserEvent.SELECT_INITIAL_FILE).toCommand(SetInitialFilePathCommand).withPayloadInjection();
+			commandmap.map(ApplicationEvent.BOOT).toCommand(BootMacro).withPayloadInjection();
+			commandmap.map(ApplicationEvent.EXIT).toCommand(ExitMacro);
+			
+			commandmap.map(UserEvent.SET_INPUTFILE).toCommand(SetInitialFilePathCommand).withPayloadInjection();
 			commandmap.map(UserEvent.START_CONVERSION).toCommand(StartConversionCommand);
 			commandmap.map(ConversionEvent.FINISHED).toCommand(ConversionFinishedCommand);
 

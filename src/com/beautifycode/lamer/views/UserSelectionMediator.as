@@ -52,7 +52,7 @@ package com.beautifycode.lamer.views {
 		private function _onDropComplete(event : NativeDragEvent) : void {
 			Debug.log("UserSelectionMediator - _onDropComplete");
 			_draggingFiles = event.clipboard.getData(ClipboardFormats.FILE_LIST_FORMAT) as Array;
-			_userEvent = new UserEvent(UserEvent.SELECT_INITIAL_FILE, true, false);
+			_userEvent = new UserEvent(UserEvent.SET_INPUTFILE, true, false);
 			_userEvent.payload = {filepath:_draggingFiles[0].nativePath};
 			eventDispatcher.dispatchEvent(_userEvent);
 		}
@@ -68,7 +68,7 @@ package com.beautifycode.lamer.views {
 		}
 
 		private function _onInputFileSelected(event : Event) : void {
-			_userEvent = new UserEvent(UserEvent.SELECT_INITIAL_FILE, true, false);
+			_userEvent = new UserEvent(UserEvent.SET_INPUTFILE, true, false);
 			_userEvent.payload = {filepath:_selectedUserFile.nativePath};
 			eventDispatcher.dispatchEvent(_userEvent);
 		}

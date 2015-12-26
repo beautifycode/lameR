@@ -107,7 +107,7 @@ package com.beautifycode.lamer.views {
 
 
 		private function _onQualitySelect(event : Event) : void {
-			_userEvent = new UserEvent(UserEvent.SET_QUALITY, true, false);
+			_userEvent = new UserEvent(UserEvent.CHANGE_QUALITY, true, false);
 			_userEvent.payload = {qualityIndex:_qualityBox.selectedIndex};
 			dispatchEvent(_userEvent);
 		}

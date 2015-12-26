@@ -5,11 +5,13 @@ package com.beautifycode.lamer.controller.events {
 	 * @author marvin
 	 */
 	public class UserEvent extends Event {
-		public static const SELECT_INITIAL_FILE : String = "selectFile";
-		public static const SET_QUALITY : String = "setQuality";
-		public static const START_CONVERSION : String = "startConversion";
+		public static const SET_INPUTFILE : String = "selectFile";
+
 		public static const CHANGE_INPUTFILE : String = "inputfilepathChanged";
 		public static const CHANGE_OUTPUTFILE : String = "outfilepathChanged";
+		public static const CHANGE_QUALITY : String = "setQuality";
+		public static const START_CONVERSION : String = "startConversion";		
+		
 		public var payload : Object;
 
 		public function UserEvent(type : String, bubbles : Boolean = false, cancelable : Boolean = false) {

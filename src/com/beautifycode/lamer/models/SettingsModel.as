@@ -1,9 +1,5 @@
 package com.beautifycode.lamer.models {
-	import flash.display.NativeWindow;
-	import flash.events.Event;
-
 	import com.beautifycode.helpers.Debug;
-	import com.beautifycode.lamer.controller.events.ConversionEvent;
 
 	import flash.events.IEventDispatcher;
 
@@ -16,6 +12,8 @@ package com.beautifycode.lamer.models {
 
 		// Config filename
 		public static var CONFIG_NAME : String = "settings.cfg";
+		
+		private var _configVO:Object = {}; 
 
 		// Essential
 		private var _inputFilePath : String = "";
@@ -82,6 +80,14 @@ package com.beautifycode.lamer.models {
 
 		public function get qualityIndex() : uint {
 			return _qualityIndex;
+		}
+
+		public function get configVO() : Object {
+			return _configVO;
+		}
+
+		public function set configVO(configVO : Object) : void {
+			_configVO = configVO;
 		}
 	}
 }

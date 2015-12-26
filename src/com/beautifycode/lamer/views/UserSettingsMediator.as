@@ -32,7 +32,7 @@ package com.beautifycode.lamer.views {
 			view.build(settingsModel.inputFilePath, settingsModel.availableQualities, settingsModel.qualityIndex);
 
 			addViewListener(UserEvent.START_CONVERSION, dispatch, UserEvent);
-			addViewListener(UserEvent.SET_QUALITY, _setQuality);
+			addViewListener(UserEvent.CHANGE_QUALITY, _setQuality);
 			addViewListener(UserEvent.CHANGE_INPUTFILE, _changeInputPath);
 			addViewListener(UserEvent.CHANGE_OUTPUTFILE, _changeOutputPath);
 		}

@@ -6,9 +6,8 @@ package com.beautifycode.lamer.controller.events {
 	 */
 	public class ApplicationEvent extends Event {
 		public static const BOOT : String = "boot";
-		public static const PREFERENCES_SET : String = "preferencesSet";
-		public static const CLOSE : String = "close";
-		public static const PREFERENCES_SAVED_BEFORE_CLOSE : String = "preferencesSavedBeforeClose";
+		public static const BOOT_COMPLETE : String = "preferencesSet";
+		public static const EXIT : String = "exit";
 
 		public var payload : Object;
 

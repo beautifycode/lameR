@@ -19,7 +19,7 @@ package com.beautifycode.lamer.views {
 			_dropAnywhereLabel = new Label();
 			_dropAnywhereLabel.text = "Loading...";
 			_dropAnywhereLabel.y = sh/2 - 40;
-			_dropAnywhereLabel.x = sw/2 - 20
+			_dropAnywhereLabel.x = sw/2 - 20;
 			addChild(_dropAnywhereLabel);
 		}
 	}

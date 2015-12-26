@@ -16,9 +16,7 @@ package com.beautifycode.lamer.models {
 
 		public static const LAMELIB_PATH : String = "";
 		public static const SETTINGS_PATH : String = "";
-		public static const APP_WIDTH : int;
-		public static const APP_HEIGHT : int;
-		public static const LICENSE : uint;
+		public static const LICENSE : uint = 0991;
 
 		private var _debugMode : String = "native";
 		private var _fileFilter : FileFilter = new FileFilter("Audiofile", "*.wav;*.mp3");
@@ -37,9 +35,9 @@ package com.beautifycode.lamer.models {
 		}
 
 		private function _onWindowClose(event : Event) : void {
-			Debug.log("SettingsModel - _onWindowClose");
+			Debug.log("ApplicationModel - _onWindowClose");
 			event.preventDefault();
-			eventDispatcher.dispatchEvent(new ApplicationEvent(ApplicationEvent.CLOSE, true, false));
+			eventDispatcher.dispatchEvent(new ApplicationEvent(ApplicationEvent.EXIT, true, false));
 		}
 
 		public function get debugMode() : String {
@@ -63,7 +61,7 @@ package com.beautifycode.lamer.models {
 		}
 
 		public function closeApplication() : void {
-			Debug.log("Saved & Close");
+			Debug.log("Saved & Close. Goodbye.");
 			_window.close();
 		}
 	}

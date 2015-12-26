@@ -4,7 +4,6 @@ package com.beautifycode.lamer.commands {
 	import com.beautifycode.lamer.controller.events.ConversionEvent;
 	import com.beautifycode.lamer.controller.events.UserEvent;
 	import com.beautifycode.lamer.models.SettingsModel;
-	import com.beautifycode.lamer.services.ConversionService;
 
 	import flash.events.IEventDispatcher;
 
@@ -16,13 +15,11 @@ package com.beautifycode.lamer.commands {
 		public var eventDispatcher : IEventDispatcher;
 
 		[Inject]
-		public var fileService : ConversionService;
-
-		[Inject]
 		public var event : UserEvent;
 
 		[Inject]
 		public var settingsModel : SettingsModel;
+		
 		private var _conversionEvent : ConversionEvent;
 
 		override public function execute() : void {

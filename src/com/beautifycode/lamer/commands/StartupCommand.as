@@ -1,48 +1,56 @@
 package com.beautifycode.lamer.commands {
-	import robotlegs.bender.bundles.mvcs.Command;
+	import eu.alebianco.robotlegs.utils.impl.AsyncCommand;
+
 	import robotlegs.bender.extensions.contextView.ContextView;
 
-	import com.beautifycode.lamer.controller.events.ApplicationEvent;
+	import com.beautifycode.AIRUpdateHelper.AIRUpdateHelper;
+	import com.beautifycode.helpers.Debug;
 	import com.beautifycode.lamer.models.ApplicationModel;
-	import com.beautifycode.lamer.models.SettingsModel;
-	import com.beautifycode.lamer.services.PreferenceService;
 	import com.beautifycode.lamer.views.ApplicationView;
 
 	/**
 	 * @author marvin
 	 */
-	public class BootCommand extends Command {
+	public class StartupCommand extends AsyncCommand {
 		[Inject]
 		public var contextView : ContextView;
 
 		[Inject]
-		public var event : ApplicationEvent;
-
-		[Inject]
 		public var applicationModel : ApplicationModel;
-		
-		[Inject]
-		public var settingsModel : SettingsModel;
-
-		[Inject]
-		public var prefService : PreferenceService;
 
 		private var _applicationView : ApplicationView;
 
 		override public function execute() : void {
+			Debug.log("StartupCommand - init.");
 			_applicationView = new ApplicationView();
 			contextView.view.addChild(_applicationView);
 
 			_setupNativeWindow();
-			_loadApplicationPreferences();
+			_checkVersion();
 		}
 
 		private function _setupNativeWindow() : void {
 			applicationModel.setupNativeWindow(contextView.view.stage.nativeWindow);
 		}
 
-		private function _loadApplicationPreferences() : void {
-			prefService.loadPreferences(event.payload.bootWithPath);
+		private function _checkVersion() : void {
+			AIRUpdateHelper.getAppInfo();
+			AIRUpdateHelper.checkForUpdate("http://*.xml", _onUpdateSkip, _onFail);
+		}
+
+		private function _onUpdateSkip() : void {
+			Debug.log("Update skipped");
+			_resolve();
+		}
+
+		private function _onFail(s : String) : void {
+			Debug.log(s);
+			_resolve();
+		}
+
+		private function _resolve() : void {
+			dispatchComplete(true);
+			Debug.log("StartupCommand - done.");
 		}
 	}
 }
